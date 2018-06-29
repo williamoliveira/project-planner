@@ -87,11 +87,11 @@ export const getFiltered = createSelector(
     }
 
     if (filter.id === 'past-due') {
-      return !activity.ended && new Date().toISOString() > activity.endsAt
+      return !activity.ended && new Date() > new Date(activity.endsAt)
     }
 
     if (filter.id === 'before-due') {
-      return activity.ended && activity.endedAt < activity.endsAt
+      return activity.ended && new Date(activity.endedAt) < new Date(activity.endsAt)
     }
 
     return true
